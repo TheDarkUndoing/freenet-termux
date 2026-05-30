@@ -4,12 +4,13 @@ echo "Installing proot-distro..."
 pkg install proot-distro
 
 proot-distro install ubuntu:24.04
-proot-distro login ubuntu
-
-echo "Installing Freenet..."
+proot-distro login ubuntu -- bash -c "
+echo "Installing Freenet..." &&
 # Install freenet
-curl -fsSL https://freenet.org/install.sh | sh
+curl -fsSL https://freenet.org/install.sh | sh &&
 
 # Start freenet  
-freenet network --log-dir=/tmp &>>/dev/null
+freenet network --log-dir=/tmp &>>/dev/null &&
+"
+
 
